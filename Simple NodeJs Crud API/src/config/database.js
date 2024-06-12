@@ -1,6 +1,8 @@
 
-const express  = require('express')
+const express = require('express')
 const mongoose = require('mongoose');
+const logger = require('../utils/logger.js')
+
 const uri = "mongodb+srv://leyow:Akosileo123.@backenddb.y67zig8.mongodb.net/Node-API?retryWrites=true&w=majority&appName=BackendDB";
 const app = express()
 
@@ -10,11 +12,10 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log("Connected Successfully");
-
-    
+    logger.info('Connected Successfully');
   } catch (error) {
-    console.error("Connection Failed", error);
+    logger.error('Connection Failed', error);
+    process.exit(1);
   }
 };
 
